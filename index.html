@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Anniversary, Kaylee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(to right, #fff3f6, #f9e6eb);
+      color: #333;
+      text-align: center;
+    }
+    header {
+      padding: 3rem 1rem;
+      background-color: #e75480;
+      color: white;
+    }
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    .love-letter {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .love-letter h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #e75480;
+    }
+    .love-letter p {
+      text-align: left;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .countdown {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      color: #e75480;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .toggle-btn {
+      background-color: #e75480;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      margin: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .toggle-btn:hover {
+      background-color: #c7436f;
+    }
+    iframe.music {
+      margin-top: 2rem;
+      border-radius: 1rem;
+    }
+    footer {
+      margin-top: 3rem;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Happy 1 Year, Kaylee 💖</h1>
+    <p>From your Angel – 07/21/24</p>
+  </header>
+
+  <button onclick="toggleSection('love-letter')" class="toggle-btn">Read My Love Letter</button>
+  <section id="love-letter" class="love-letter" style="display: none;">
+    <h2>💌 My Love Letter to You</h2>
+    <p>
+      Happy 1 Year Anniversary my love!<br><br>
+      I still can’t believe it’s been a whole year since we first met on Roblox lol, it feels like just yesterday we were laughing and playing together, not knowing how much we'd end up meaning to each other. <br><br>
+      Even with all the miles between us, you’ve never once felt far away. You’ve been my favorite notification, my biggest comfort, and the best part of every day. Long distance hasn’t been easy, but it’s shown me how strong our connection really is. We've built something real, even though we are so far away.<br><br>
+      Thank you for being patient, loving, and always making time for me. I wouldn’t trade what we have for anything. Happy First Year and to everything we have ahead of us. One day, we’ll close the distance, but until then, I’ll keep holding your heart and hands close from afar.<br><br>
+      I'll love you, always, beautiful.
+    </p>
+  </section>
+
+  <div class="countdown">
+    <h2>⏳ Countdown to 2nd Anniversary</h2>
+    <div id="timer"></div>
+  </div>
+
+  <button onclick="toggleSection('gallery')" class="toggle-btn">See Our Photos</button>
+  <section id="gallery" class="gallery" style="display: none;">
+    <img src="https://via.placeholder.com/200x200?text=Us+1" alt="Photo 1">
+    <img src="https://via.placeholder.com/200x200?text=Us+2" alt="Photo 2">
+    <img src="https://via.placeholder.com/200x200?text=Us+3" alt="Photo 3">
+  </section>
+
+  <iframe class="music" width="300" height="180" src="https://www.youtube.com/embed/zr5ZpFjO3D8?autoplay=1&loop=1&playlist=zr5ZpFjO3D8" title="Bubble Gum - NewJeans" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+  <footer>
+    Made with love by Angel for Kaylee 💘
+  </footer>
+
+  <script>
+    const targetDate = new Date("2026-07-21T00:00:00").getTime();
+    const timer = document.getElementById("timer");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      timer.innerHTML = `${days} days, ${hours} hrs, ${minutes} min, ${seconds} sec`;
+    }
+
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.style.display = section.style.display === "none" ? "block" : "none";
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
