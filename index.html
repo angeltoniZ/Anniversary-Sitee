@@ -9,83 +9,117 @@
     body {
       margin: 0;
       font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(to right, #fff3f6, #f9e6eb);
+      background: radial-gradient(circle, #ffeef3 0%, #fff6fa 100%);
+      background-image: url('https://www.transparenttextures.com/patterns/pink-paper.png');
       color: #333;
       text-align: center;
     }
+
     header {
       padding: 3rem 1rem;
       background-color: #e75480;
       color: white;
     }
+
     header h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 3rem;
       margin-bottom: 0.5rem;
     }
+
     header p {
       font-size: 1.2rem;
     }
-    .love-letter {
-      max-width: 700px;
-      margin: 2rem auto;
-      background: white;
-      border-radius: 1rem;
+
+    .envelope-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
       padding: 2rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
-    .love-letter h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
+
+    .envelope {
+      width: 300px;
+      height: 200px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .flap {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border: 2px solid #e75480;
+      border-radius: 10px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+    }
+
+    .envelope.open .flap {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .front {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
       color: #e75480;
+      font-weight: bold;
     }
-    .love-letter p {
+
+    .back {
+      background-color: #fff0f5;
+      color: #444;
+      padding: 1rem;
+      transform: rotateY(180deg);
+      overflow-y: auto;
       text-align: left;
-      line-height: 1.6;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
+
+    .back img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 5px;
+    }
+
     .countdown {
       font-size: 1.5rem;
       margin-top: 2rem;
       color: #e75480;
     }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      padding: 2rem;
-    }
-    .gallery img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .toggle-btn {
-      background-color: #e75480;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 20px;
-      font-size: 1rem;
-      margin: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .toggle-btn:hover {
-      background-color: #c7436f;
-    }
+
     iframe.music {
       margin-top: 2rem;
       border-radius: 1rem;
     }
+
     footer {
       margin-top: 3rem;
       padding: 1rem;
       font-size: 0.9rem;
       color: #666;
+    }
+
+    @media (max-width: 600px) {
+      .envelope {
+        width: 90%;
+      }
     }
   </style>
 </head>
@@ -95,29 +129,40 @@
     <p>From your Angel – 07/21/24</p>
   </header>
 
-  <button onclick="toggleSection('love-letter')" class="toggle-btn">Read My Love Letter</button>
-  <section id="love-letter" class="love-letter" style="display: none;">
-    <h2>💌 My Love Letter to You</h2>
-    <p>
-      Happy 1 Year Anniversary my love!<br><br>
-      I still can’t believe it’s been a whole year since we first met on Roblox lol, it feels like just yesterday we were laughing and playing together, not knowing how much we'd end up meaning to each other. <br><br>
-      Even with all the miles between us, you’ve never once felt far away. You’ve been my favorite notification, my biggest comfort, and the best part of every day. Long distance hasn’t been easy, but it’s shown me how strong our connection really is. We've built something real, even though we are so far away.<br><br>
-      Thank you for being patient, loving, and always making time for me. I wouldn’t trade what we have for anything. Happy First Year and to everything we have ahead of us. One day, we’ll close the distance, but until then, I’ll keep holding your heart and hands close from afar.<br><br>
-      I'll love you, always, beautiful.
-    </p>
-  </section>
+  <div class="envelope-container">
+    <!-- Love Letter Envelope -->
+    <div class="envelope" onclick="toggleOpen(this)">
+      <div class="flap">
+        <div class="front">💌 Open Love Letter</div>
+        <div class="back">
+          <strong>My Love Letter to You:</strong><br><br>
+          Happy 1 Year Anniversary my love!<br><br>
+          I still can’t believe it’s been a whole year since we first met on Roblox lol, it feels like just yesterday we were laughing and playing together, not knowing how much we'd end up meaning to each other. <br><br>
+          Even with all the miles between us, you’ve never once felt far away. You’ve been my favorite notification, my biggest comfort, and the best part of every day. Long distance hasn’t been easy, but it’s shown me how strong our connection really is. We've built something real, even though we are so far away.<br><br>
+          Thank you for being patient, loving, and always making time for me. I wouldn’t trade what we have for anything. Happy First Year and to everything we have ahead of us. One day, we’ll close the distance, but until then, I’ll keep holding your heart and hands close from afar.<br><br>
+          I'll love you, always, beautiful.
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo Gallery Envelope -->
+    <div class="envelope" onclick="toggleOpen(this)">
+      <div class="flap">
+        <div class="front">📸 View Our Photos</div>
+        <div class="back">
+          <strong>Some memories we’ve made:</strong><br><br>
+          <img src="https://via.placeholder.com/100x100?text=Us+1" alt="Photo 1">
+          <img src="https://via.placeholder.com/100x100?text=Us+2" alt="Photo 2">
+          <img src="https://via.placeholder.com/100x100?text=Us+3" alt="Photo 3">
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="countdown">
     <h2>⏳ Countdown to 2nd Anniversary</h2>
     <div id="timer"></div>
   </div>
-
-  <button onclick="toggleSection('gallery')" class="toggle-btn">See Our Photos</button>
-  <section id="gallery" class="gallery" style="display: none;">
-    <img src="https://via.placeholder.com/200x200?text=Us+1" alt="Photo 1">
-    <img src="https://via.placeholder.com/200x200?text=Us+2" alt="Photo 2">
-    <img src="https://via.placeholder.com/200x200?text=Us+3" alt="Photo 3">
-  </section>
 
   <iframe class="music" width="300" height="180" src="https://www.youtube.com/embed/zr5ZpFjO3D8?autoplay=1&loop=1&playlist=zr5ZpFjO3D8" title="Bubble Gum - NewJeans" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -139,9 +184,8 @@
       timer.innerHTML = `${days} days, ${hours} hrs, ${minutes} min, ${seconds} sec`;
     }
 
-    function toggleSection(id) {
-      const section = document.getElementById(id);
-      section.style.display = section.style.display === "none" ? "block" : "none";
+    function toggleOpen(el) {
+      el.classList.toggle('open');
     }
 
     updateCountdown();
